@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #7928CA;
+  --secondary: #FF0080;
+}
+
+body {
+  color: #1a1a1a;
+  background: #f8fafc;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-border {
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  padding: 1px;
+  border-radius: 0.5rem;
+}
+
+.gradient-border > div {
+  background: #ffffff;
+  border-radius: 0.5rem;
+}
+
+.stats-card {
+  @apply p-6 rounded-xl bg-white border border-gray-200 shadow-sm hover:border-gray-300 transition-colors;
+}
+
+/* Tremor chart customization */
+.tremor-Chart-container {
+  @apply !text-gray-600;
+}
+
+.tremor-Card-root {
+  @apply shadow-sm;
+}
+
+.tremor-Legend-root {
+  @apply !text-gray-600;
+}
+
+/* Custom scrollbar */
+.overflow-y-auto::-webkit-scrollbar {
+  width: 4px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 4px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e1;
+}
+
+/* Fix font loading */
+@font-face {
+  font-display: swap;
+}
