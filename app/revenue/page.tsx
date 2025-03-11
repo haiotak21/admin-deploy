@@ -119,7 +119,7 @@ export default function RevenueDashboard() {
         ))}
       </div>
 
-      <Card className="bg-[#f2f2f4] border-[#1B254B]">
+      <Card className="bg-[#ffff] border-[#1B254B]">
         <Title className="text-gray-900 mb-4">Revenue Trends</Title>
         <BarChart
           data={revenueData}
@@ -130,7 +130,7 @@ export default function RevenueDashboard() {
         />
       </Card>
 
-      <Card className="bg-[#f2f2f4] border-[#1B254B]">
+      <Card className="bg-[#ffff] border-[#1B254B]">
         <Title className="text-gray-900 mb-4">Recent Transactions</Title>
         <div className="overflow-x-auto">
           <table className="w-full">

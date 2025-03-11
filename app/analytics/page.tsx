@@ -101,7 +101,7 @@ export default function AnalyticsDashboard() {
         ))}
       </div>
 
-      <Card className="bg-[#f2f2f4] border-[#1B254B]">
+      <Card className="bg-[#ffff] border-[#1B254B]">
         <Title className="text-gray-900 mb-4">User Activity Trends</Title>
         <span className="text-green-700 text-sm ml-3 bg-green-600/20 px-2 py-1 rounded">21.1% ↑</span>
         <LineChart
@@ -114,7 +114,7 @@ export default function AnalyticsDashboard() {
       </Card>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="bg-[#f2f2f4] border-[#1B254B]">
+        <Card className="bg-[#fff] border-[#1B254B]">
           <Title className="text-gray-900 mb-4">User Engagement by Platform</Title>
           <BarChart
             data={[
@@ -129,7 +129,7 @@ export default function AnalyticsDashboard() {
           />
         </Card>
 
-        <Card className="bg-[#f2f2f4] border-[#1B254B]">
+        <Card className="bg-[#fff] border-[#1B254B]">
           <Title className="text-gray-900 mb-4">Resource Usage Distribution</Title>
           <BarChart
             data={[

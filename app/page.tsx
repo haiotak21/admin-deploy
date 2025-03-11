@@ -164,10 +164,10 @@ export default function Dashboard() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="bg-[#f2f2f4] border-[#1B254B]">
+        <Card className="bg-[#ffff] border-[#1B254B]">
           <Title className="text-gray-900 mb-4">Revenue Trend</Title>
           <span className="text-3xl font-bold text-gray-900 mb-4">287</span>
-              <span className="text-green-700 text-sm ml-3 bg-green-600/20 px-2 py-1 rounded">17.8% ↑</span>
+              <span className="text-green-700 text-sm ml-3 bg-green-900/20 px-2 py-1 rounded">17.8% ↑</span>
           <LineChart
             data={revenueTrendData}
             index="month"
@@ -179,7 +179,7 @@ export default function Dashboard() {
           />
         </Card>
 
-        <Card className="bg-[#f2f2f4] border-[#1B254B]">
+        <Card className="bg-[#ffff] border-[#1B254B]">
           <Title className="text-gray-900 mb-4">User Growth</Title>
           <span className="text-3xl font-bold text-gray-900 mb-4">2173 users</span>
               <span className="text-green-700 text-sm ml-3 bg-green-600/20 px-2 py-1 rounded">21.1% ↑</span>
@@ -195,7 +195,7 @@ export default function Dashboard() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="bg-[#f2f2f4] border-[#1B254B]">
+        <Card className="bg-[#ffff] border-[#1B254B]">
           <Title className="text-gray-900 mb-4">Revenue by Subscription Tier</Title>
           <span className="text-3xl font-bold text-gray-900 mb-4">$20K</span>
               <span className="text-green-700 text-sm ml-3 bg-green-600/20 px-2 py-1 rounded">14.8% ↑</span>
@@ -209,11 +209,11 @@ export default function Dashboard() {
           />
         </Card>
 
-        <Card className="bg-[#f2f2f4] border-[#1B254B]">
+        <Card className="bg-[#ffff] border-[#1B254B]">
           <Title className="text-gray-900 mb-4">Subscription Tiers</Title>
           <div className="space-y-6 mt-4">
             {subscriptionTiers.map((tier) => (
-              <div key={tier.name} className="flex items-center justify-between p-4 bg-[#1B254B] rounded-lg">
+              <div key={tier.name} className="flex items-center justify-between p-4 bg-[#3f3a75] rounded-lg">
                 <div>
                   <h3 className="text-lg font-semibold text-white">{tier.name}</h3>
                   <p className="text-gray-400">{tier.users} users</p>

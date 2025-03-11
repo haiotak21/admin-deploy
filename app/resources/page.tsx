@@ -86,7 +86,7 @@ export default function ResourcesManagement() {
         ))}
       </div>
 
-      <Card className="bg-[#f2f2f4] border-[#1B254B]">
+      <Card className="bg-[#ffff] border-[#1B254B]">
         <div className="flex justify-between items-center mb-6">
           <Title className="text-gray-900 mb-4">Resource List</Title>
           <div className="relative">
@@ -102,7 +102,7 @@ export default function ResourcesManagement() {
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="text-gray-900 border-b border-[#1B254B]">
+              <tr className="text-gray-900 border-b border-[#4b2e1b]">
                 <th className="text-left py-3 px-4">Title</th>
                 <th className="text-left py-3 px-4">Type</th>
                 <th className="text-left py-3 px-4">Author</th>
@@ -114,7 +114,7 @@ export default function ResourcesManagement() {
             </thead>
             <tbody>
               {resources.map((resource) => (
-                <tr key={resource.id} className="border-b border-[#f2f2f4] text-gray-900">
+                <tr key={resource.id} className="border-b border-[#ffff] text-gray-900">
                   <td className="py-3 px-4">{resource.title}</td>
                   <td className="py-3 px-4">{resource.type}</td>
                   <td className="py-3 px-4">{resource.author}</td>
