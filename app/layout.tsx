@@ -3,8 +3,9 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Sidebar from '@/components/Sidebar';
 import Header from '@/components/Header';
+import { Providers } from '@/providers';
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ['latin'],
   display: 'swap'
 });
@@ -20,17 +21,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <div className="flex h-screen bg-[#0B1437]">
-          <Sidebar />
-          <div className="flex-1 flex flex-col overflow-hidden">
-            <Header />
-            <main className="flex-1 overflow-x-hidden overflow-y-auto bg-[#F9FAFB]">
-              {children}
-            </main>
+        <Providers>
+          <div className="flex h-screen bg-[#0B1437]">
+            <Sidebar />
+            <div className="flex-1 flex flex-col overflow-hidden">
+              <Header />
+              <main className="flex-1 overflow-x-hidden overflow-y-auto bg-[#F9FAFB]">
+                {children}
+              </main>
+            </div>
           </div>
-        </div>
+        </Providers>
       </body>
     </html>
   );
