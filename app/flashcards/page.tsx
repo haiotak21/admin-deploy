@@ -12,7 +12,6 @@ const flashcards = [
     rating: 4.9,
     status: 'Published'
   },
-  // Add more sample flashcards...
 ];
 
 export default function FlashcardManagement() {
