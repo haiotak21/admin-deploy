@@ -1,14 +1,10 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import Sidebar from '@/components/Sidebar';
 import Header from '@/components/Header';
 import { Providers } from '@/providers';
 
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap'
-});
+
 
 export const metadata: Metadata = {
   title: 'LivQuiz Admin Dashboard',
@@ -22,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body >
         <Providers>
           <div className="flex h-screen bg-[#0B1437]">
             <Sidebar />

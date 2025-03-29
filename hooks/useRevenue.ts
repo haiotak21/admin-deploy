@@ -15,22 +15,48 @@ async function fetchTransactions(period: Period) {
   return res.json();
 }
 
+// export const useSubscriptions = () => {
+//   return useQuery<SubscriptionResponse[]>({
+//     queryKey: ["revenue", "subscriptions"],
+//     queryFn: fetchSubscriptions,
+//     select: (data) =>
+//       data.map((sub) => ({
+//         name: sub.name,
+//         users:
+//           typeof sub.users === "number" ? sub.users : parseInt(sub.users, 10),
+//         revenue:
+//           typeof sub.revenue === "number"
+//             ? sub.revenue
+//             : parseFloat(sub.revenue),
+//         growth: sub.growth,
+//         currency: sub.currency || "USD",
+//       })),
+//   });
+// };
+
 export const useSubscriptions = () => {
-  return useQuery<SubscriptionResponse[]>({
+  return useQuery<SubscriptionResponse, Error, SubscriptionResponse>({
     queryKey: ["revenue", "subscriptions"],
     queryFn: fetchSubscriptions,
-    select: (data) =>
-      data.map((sub) => ({
-        name: sub.name,
+    // Preserve the original structure while ensuring type safety
+    select: (data) => ({
+      totalUsers: data.totalUsers,
+      totalRevenue: data.totalRevenue,
+      growth: data.growth,
+      tiers: data.tiers.map((tier) => ({
+        name: tier.name,
         users:
-          typeof sub.users === "number" ? sub.users : parseInt(sub.users, 10),
+          typeof tier.users === "number"
+            ? tier.users
+            : parseInt(tier.users as any, 10),
         revenue:
-          typeof sub.revenue === "number"
-            ? sub.revenue
-            : parseFloat(sub.revenue),
-        growth: sub.growth,
-        currency: sub.currency || "USD",
+          typeof tier.revenue === "number"
+            ? tier.revenue
+            : parseFloat(tier.revenue as any),
+        growth: tier.growth,
+        currency: tier.currency || "USD",
       })),
+    }),
   });
 };
 

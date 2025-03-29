@@ -139,7 +139,7 @@ export default function Dashboard() {
 
           <Card className="bg-[#ffff] border-[#1B254B]">
             <Title className="text-gray-900 mb-4">User Growth</Title>
-            {(userTrends?.total || 0).toLocaleString()} users
+            <span className="text-3xl font-bold text-gray-900 mb-4">{(userTrends?.total || 0).toLocaleString()} </span> users
             <span className="text-green-700 text-sm ml-3 bg-green-600/20 px-2 py-1 rounded"> {userTrends?.growth}</span>
             <BarChart
               data={userTrends?.data || []}
