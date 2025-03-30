@@ -6,7 +6,7 @@ import { useDashboard, useTrends, useSubscriptions } from '@/hooks/useDashboard'
 import { DataLoader } from '@/components/DataLoader';
 
 
-// Mapping between metric IDs and display properties
+// Mapping between metric IDs and display propertie
 const METRIC_CONFIG = {
   total_users: {
     title: 'Total Users',
@@ -66,7 +66,7 @@ const METRIC_CONFIG = {
     title: 'Completion Rate',
     icon: Award,
     color: 'from-[#FF0080] to-[#7928CA]',
-    formatter: (value: number) => `${value}%`
+    formatter: (value: number) => `${value}`
   }
 };
 
@@ -112,7 +112,7 @@ export default function Dashboard() {
                 </div>
                 <div className="mt-4">
                   <span className={`text-sm ${metric.change >= 0 ? 'text-green-500' : 'text-red-500'}`}>
-                    {metric.change >= 0 ? '' : ''}{metric.change}%
+                    {metric.change >= 0 ? '' : ''}{metric.change}
                   </span>
                   <span className="text-gray-500 text-sm ml-2">vs last month</span>
                 </div>
