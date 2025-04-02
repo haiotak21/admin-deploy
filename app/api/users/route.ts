@@ -4,9 +4,9 @@ import { apiClient } from '@/lib/api-client';
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const role = searchParams.get('role');
+    const params = Object.fromEntries(searchParams.entries());
     
-    const { data } = await apiClient.get(`/api/users?role=${role}`);
+    const { data } = await apiClient.get('/api/users', { params });
     return NextResponse.json(data);
   } catch (error) {
     return NextResponse.json(
@@ -15,3 +15,29 @@ export async function GET(request: Request) {
     );
   }
 }
+
+
+
+// import { NextResponse } from 'next/server';
+// import { apiClient } from '@/lib/api-client';
+
+// export async function GET(request: Request) {
+//   try {
+//     const { searchParams } = new URL(request.url);
+//     const role = searchParams.get('role');
+    
+//     const { data } = await apiClient.get(`/api/users?role=${role}`);
+//     return NextResponse.json(data);
+//   } catch (error) {
+//     return NextResponse.json(
+//       { error: 'Failed to fetch users' },
+//       { status: 500 }
+//     );
+//   }
+// }
+
+
+
+
+
+

@@ -15,25 +15,6 @@ async function fetchTransactions(period: Period) {
   return res.json();
 }
 
-// export const useSubscriptions = () => {
-//   return useQuery<SubscriptionResponse[]>({
-//     queryKey: ["revenue", "subscriptions"],
-//     queryFn: fetchSubscriptions,
-//     select: (data) =>
-//       data.map((sub) => ({
-//         name: sub.name,
-//         users:
-//           typeof sub.users === "number" ? sub.users : parseInt(sub.users, 10),
-//         revenue:
-//           typeof sub.revenue === "number"
-//             ? sub.revenue
-//             : parseFloat(sub.revenue),
-//         growth: sub.growth,
-//         currency: sub.currency || "USD",
-//       })),
-//   });
-// };
-
 export const useSubscriptions = () => {
   return useQuery<SubscriptionResponse, Error, SubscriptionResponse>({
     queryKey: ["revenue", "subscriptions"],

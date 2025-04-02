@@ -1,29 +1,35 @@
-import { useQuery } from '@tanstack/react-query';
+"use client";
 
-type UserRole = 'student' | 'teacher';
+import { useQuery } from "@tanstack/react-query";
+import { UserStatsResponse, UsersListResponse, UserRole } from "@/types/users";
 
-async function fetchUserGrowth() {
-  const res = await fetch('/api/users/growth');
-  if (!res.ok) throw new Error('Failed to fetch user growth');
-  return res.json();
-}
-
-async function fetchUsers(role: UserRole) {
-  const res = await fetch(`/api/users?role=${role}`);
-  if (!res.ok) throw new Error('Failed to fetch users');
-  return res.json();
-}
-
-export const useUserGrowth = () => {
-  return useQuery({
-    queryKey: ['users', 'growth'],
-    queryFn: fetchUserGrowth,
+export const useUserStats = () => {
+  return useQuery<UserStatsResponse>({
+    queryKey: ["users", "stats"],
+    queryFn: async () => {
+      const response = await fetch("/api/users/stats");
+      if (!response.ok) throw new Error("Failed to fetch user stats");
+      return response.json();
+    },
   });
 };
 
-export const useUsers = (role: UserRole) => {
-  return useQuery({
-    queryKey: ['users', role],
-    queryFn: () => fetchUsers(role),
+export const useUsersList = (role: UserRole, page: number, search: string) => {
+  const capitalizedRole = role.charAt(0).toUpperCase() + role.slice(1);
+  
+  return useQuery<UsersListResponse>({
+    queryKey: ['users', 'list', role, page, search],
+    queryFn: async () => {
+      const params = new URLSearchParams({
+        role: capitalizedRole,
+        page: page.toString(),
+        limit: '10',
+        ...(search && { search })
+      });
+
+      const response = await fetch(`/api/users?${params}`);
+      if (!response.ok) throw new Error('Failed to fetch users');
+      return response.json();
+    }
   });
 };
