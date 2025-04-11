@@ -5,71 +5,81 @@ import { Users, Brain, BookOpen, GraduationCap, DollarSign, Clock, Book, Award, 
 import { useDashboard, useTrends, useSubscriptions } from '@/hooks/useDashboard';
 import { DataLoader } from '@/components/DataLoader';
 
-
-// Mapping between metric IDs and display propertie
+// Mapping between metric IDs and display properties
 const METRIC_CONFIG = {
   total_users: {
     title: 'Total Users',
     icon: Users,
-    color: 'from-[#7928CA] to-[#FF0080]',
+    color: 'from-[#6052cc] to-[#6052cc]',
     formatter: (value: number) => `${(value / 1000).toFixed(1)}K`
   },
   active_quizzes: {
     title: 'Active Quizzes',
     icon: Brain,
-    color: 'from-[#FF0080] to-[#7928CA]',
+    color: 'from-[#6052cc] to-[#6052cc]',
     formatter: (value: number) => `${(value / 1000).toFixed(1)}K`
   },
   total_flashcards: {
     title: 'Flashcards',
     icon: BookOpen,
-    color: 'from-[#7928CA] to-[#FF0080]',
+    color: 'from-[#6052cc] to-[#6052cc]',
     formatter: (value: number) => `${(value / 1000).toFixed(1)}K`
   },
   total_study_sets: {
     title: 'Study Sets',
     icon: GraduationCap,
-    color: 'from-[#FF0080] to-[#7928CA]',
+    color: 'from-[#6052cc] to-[#6052cc]',
     formatter: (value: number) => value.toLocaleString()
   },
   monthly_revenue: {
     title: 'Monthly Revenue',
     icon: DollarSign,
-    color: 'from-[#7928CA] to-[#FF0080]',
+    color: 'from-[#6052cc] to-[#6052cc]',
     formatter: (value: number) => `$${(value / 1000).toFixed(0)}K`
   },
   active_users: {
     title: 'Active Users',
     icon: Users,
-    color: 'from-[#FF0080] to-[#7928CA]',
+    color: 'from-[#6052cc] to-[#6052cc]',
     formatter: (value: number) => `${(value / 1000).toFixed(1)}K`
   },
   arpu: {
     title: 'Avg Revenue Per User',
     icon: DollarSign,
-    color: 'from-[#7928CA] to-[#FF0080]',
+    color: 'from-[#6052cc] to-[#6052cc]',
     formatter: (value: number) => `$${value.toFixed(2)}`
   },
   total_content_sets: {
     title: 'Content Sets',
     icon: Book,
-    color: 'from-[#FF0080] to-[#7928CA]',
+    color: 'from-[#6052cc] to-[#6052cc]',
     formatter: (value: number) => value.toLocaleString()
   },
   avg_study_time: {
     title: 'Avg. Study Time',
     icon: Clock,
-    color: 'from-[#7928CA] to-[#FF0080]',
+    color: 'from-[#6052cc] to-[#6052cc]',
     formatter: (value: number) => `${value} mins`
   },
   completion_rate: {
     title: 'Completion Rate',
     icon: Award,
-    color: 'from-[#FF0080] to-[#7928CA]',
+    color: 'from-[#6052cc] to-[#6052cc]',
     formatter: (value: number) => `${value}`
-  }
+  },
+  exams: {
+    title: 'Exams',
+    icon: Book,
+    color: 'from-[#6052cc] to-[#6052cc]',
+    formatter: (value: number) => `${value}`
+  },
+  total_quizzes: {
+    title: 'Quizzes',
+    icon: Book,
+    color: 'from-[#6052cc] to-[#6052cc]',
+    formatter: (value: number) => `${value}`
+  },
 };
-
 
 export default function Dashboard() {
   const { data: dashboardData, isLoading, error } = useDashboard();
@@ -78,14 +88,17 @@ export default function Dashboard() {
   const { data: subscriptions } = useSubscriptions();
 
   return (
-    <DataLoader isLoading={isLoading} error={error}>
+    <DataLoader
+      isLoading={isLoading}
+      error={error instanceof Error ? error : null}
+    >
       <div className="space-y-6 bg-gray-50 p-6">
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Livquiz dashboard</h1>
             <p className="text-gray-600">Livquiz Analytics Dashboard</p>
           </div>
-          <button className="bg-gradient-to-r from-[#7928CA] to-[#FF0080] text-white px-4 py-2 rounded-lg flex items-center">
+          <button className="bg-gradient-to-r from-[#6052cc] to-[#6052cc] text-white px-4 py-2 rounded-lg flex items-center">
             <TrendingUp className="w-5 h-5 mr-2" />
             Export Report
           </button>
@@ -122,22 +135,23 @@ export default function Dashboard() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card className="bg-[#ffff] border-[#1B254B]">
+          <Card className="bg-white border-[#6052cc]">
             <Title className="text-gray-900 mb-4">Revenue Trend</Title>
-            <span className="text-3xl font-bold text-gray-900 mb-4">${(revenueTrends?.total || 0).toLocaleString()}</span>
-            <span className="text-green-700 text-sm ml-3 bg-green-900/20 px-2 py-1 rounded">{revenueTrends?.growth}</span>
-            <LineChart
+            <div className="flex items-baseline">
+              <span className="text-3xl font-bold text-gray-900">${(revenueTrends?.total || 0).toLocaleString()}</span>
+              <span className="text-green-700 text-sm ml-3 bg-green-900/20 px-2 py-1 rounded">{revenueTrends?.growth}</span>
+            </div>
+            <BarChart
               data={revenueTrends?.data || []}
               index="month"
               categories={['value']}
-              colors={['#7928CA']}
+              colors={['#6052cc']}
               valueFormatter={(value) => `$${value.toLocaleString()}`}
-              showLegend={false}
               className="h-72 mt-4"
             />
           </Card>
 
-          <Card className="bg-[#ffff] border-[#1B254B]">
+          <Card className="bg-white border-[#6052cc]">
             <Title className="text-gray-900 mb-4">User Growth</Title>
             <span className="text-3xl font-bold text-gray-900 mb-4">{(userTrends?.total || 0).toLocaleString()} </span> users
             <span className="text-green-700 text-sm ml-3 bg-green-600/20 px-2 py-1 rounded"> {userTrends?.growth}</span>
@@ -145,7 +159,7 @@ export default function Dashboard() {
               data={userTrends?.data || []}
               index="month"
               categories={['value']}
-              colors={['#FF0080']}
+              colors={['#6052cc']}
               valueFormatter={(value) => value.toLocaleString()}
               className="h-72"
             />
@@ -153,7 +167,7 @@ export default function Dashboard() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card className="bg-[#ffff] border-[#1B254B]">
+          <Card className="bg-white border-[#6052cc]">
             <Title className="text-gray-900 mb-4">Revenue by Subscription Tier</Title>
             <span className="text-3xl font-bold text-gray-900 mb-4"> ${(subscriptions?.totalRevenue || 0).toLocaleString()}</span>
             <span className="text-green-700 text-sm ml-3 bg-green-600/20 px-2 py-1 rounded">{subscriptions?.growth}</span>
@@ -161,17 +175,17 @@ export default function Dashboard() {
               data={subscriptions?.tiers || []}
               index="tier"
               categories={['revenue', 'users']}
-              colors={['#7928CA', '#36B37E']}
-              valueFormatter={(value) => `$${value.toLocaleString()}`}
+              colors={['#6052cc', '#36B37E']}
+              valueFormatter={(value) => `${value.toLocaleString()}`}
               className="h-72"
             />
           </Card>
 
-          <Card className="bg-white border border-gray-200">
+          <Card className="bg-white border-[#6052cc]">
             <Title className="text-gray-900 mb-4">Subscription Tiers</Title>
             <div className="space-y-6 mt-4">
               {subscriptions?.tiers.map((tier) => (
-                <div key={tier.name} className="flex items-center justify-between p-4 bg-[#3f3a75] rounded-lg">
+                <div key={tier.name} className="flex items-center justify-between p-4 bg-[#6052cc] rounded-lg">
                   <div>
                     <h3 className="text-lg font-semibold text-white">{tier.name}</h3>
                     <p className="text-gray-400">{tier.users.toLocaleString()} users</p>
@@ -187,6 +201,5 @@ export default function Dashboard() {
         </div>
       </div>
     </DataLoader>
-
   );
 }

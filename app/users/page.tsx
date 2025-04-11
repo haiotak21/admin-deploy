@@ -165,7 +165,7 @@ export default function UserManagement() {
       <div className="space-y-6 bg-gray-50 p-6">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-bold text-gray-900">User Management</h1>
-          <button className="bg-gradient-to-r from-[#7928CA] to-[#FF0080] text-white px-4 py-2 rounded-lg flex items-center">
+          <button className="bg-[#6052cc] hover:bg-[#4A3C8C] text-white transition-colors px-4 py-2 rounded-lg flex items-center">
             <UserPlus className="w-5 h-5 mr-2" />
             Add User
           </button>

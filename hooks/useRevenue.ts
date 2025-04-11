@@ -1,5 +1,10 @@
 import { SubscriptionResponse } from "@/types/dashboard";
-import { useQuery } from "@tanstack/react-query";
+import { RevenueOverviewResponse } from "@/types/revenue";
+import {
+  QueryObserverResult,
+  useQuery,
+  UseQueryResult,
+} from "@tanstack/react-query";
 
 type Period = "current_month" | "last_30d";
 
@@ -14,6 +19,24 @@ async function fetchTransactions(period: Period) {
   if (!res.ok) throw new Error("Failed to fetch transactions");
   return res.json();
 }
+
+async function fetchRevenueOverview(
+  page: number = 1
+): Promise<RevenueOverviewResponse> {
+  const res = await fetch(`/api/revenue/overview?page=${page}`);
+  if (!res.ok) throw new Error("Failed to fetch revenue data");
+  return res.json();
+}
+
+export const useRevenue = (
+  page: number = 1
+): QueryObserverResult<RevenueOverviewResponse, Error> => {
+  return useQuery({
+    queryKey: ["revenue", page],
+    queryFn: () => fetchRevenueOverview(page),
+    staleTime: 1000 * 60 * 5, // 5 minutes cache
+  });
+};
 
 export const useSubscriptions = () => {
   return useQuery<SubscriptionResponse, Error, SubscriptionResponse>({
