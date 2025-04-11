@@ -138,14 +138,14 @@ export default function RevenueDashboard() {
         {/* Transactions Table */}
         <Card className="p-6 shadow-sm mt-5">
           <div className="mb-6">
-            <Title className="text-gray-900">Recent Transactions</Title>
+            <Title className="text-gray-900">Recent Subscription</Title>
           </div>
 
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="text-gray-600 border-b border-gray-200">
-                  <th className="text-left py-3 px-4">Transaction ID</th>
+                  <th className="text-left py-3 px-4">Subscription ID</th>
                   <th className="text-left py-3 px-4">Type</th>
                   <th className="text-left py-3 px-4">Customer</th>
                   <th className="text-left py-3 px-4">Amount</th>
