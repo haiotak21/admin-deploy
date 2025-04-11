@@ -38,7 +38,6 @@ export default function RevenueDashboard() {
     data,
     isLoading,
     isFetching,
-    isPreviousData,
     error
   } = useRevenue(currentPage);
 
@@ -92,17 +91,17 @@ export default function RevenueDashboard() {
                   </div>
                   {Icon && (
                     <div className={`p-3 rounded-lg ${isPositive ? 'bg-[#6052cc]/20' : 'bg-[#4A3C8C]/20'}`}>
-                      <Icon className={`h-6 w-6 ${isPositive ? 'text-[#6052cc]' : 'text-[#4A3C8C]'}`} />
+                      <Icon className={`h-6 w-6 ${isPositive ? 'text-[#4A3C8C]' : 'text-[#4A3C8C]'}`} />
                     </div>
                   )}
                 </div>
                 <div className="mt-4 flex items-center">
                   {isPositive ? (
-                    <ArrowUpRight className="w-4 h-4 text-[#6052cc] mr-1" />
+                    <ArrowUpRight className="w-4 h-4 text-green-700 mr-1" />
                   ) : (
-                    <ArrowDownRight className="w-4 h-4 text-[#4A3C8C] mr-1" />
+                    <ArrowDownRight className="w-4 h-4 text-red-700 mr-1" />
                   )}
-                  <Text className={`text-sm ${isPositive ? 'text-[#6052cc]' : 'text-[#4A3C8C]'}`}>
+                  <Text className={`text-sm ${isPositive ? 'text-green-700' : 'text-red-700'}`}>
                     {stat.change}
                   </Text>
                   <Text className="text-sm text-gray-500 ml-2">{stat.timeframe}</Text>
@@ -175,7 +174,7 @@ export default function RevenueDashboard() {
                     </td>
                     <td className="py-3 px-4">
                       <span className={`px-2 py-1 rounded-full text-xs ${transaction.status === 'completed'
-                        ? 'bg-[#6052cc]/20 text-[#6052cc]'
+                        ? 'bg-green-200 text-green-700'
                         : 'bg-[#4A3C8C]/20 text-[#4A3C8C]'
                         }`}>
                         {transaction.status}
@@ -189,7 +188,7 @@ export default function RevenueDashboard() {
             {/* Pagination Controls - Moved to Bottom */}
             <div className="mt-6 flex items-center justify-end gap-4">
               <Button
-                size="xs"
+                size="md"
                 onClick={handlePreviousPage}
                 disabled={currentPage === 1 || isLoading}
                 icon={ChevronLeft}
@@ -199,12 +198,12 @@ export default function RevenueDashboard() {
                 Previous
               </Button>
 
-              <Text className="text-sm text-gray-600">
+              <Text className="text-md text-gray-600">
                 Page {currentPage} of {data?.subscriptions.totalPages || 1}
               </Text>
 
               <Button
-                size="xs"
+                size="md"
                 onClick={handleNextPage}
                 disabled={currentPage >= (data?.subscriptions.totalPages || 1) || isLoading}
                 icon={ChevronRight}

@@ -30,12 +30,11 @@ async function fetchRevenueOverview(
 
 export const useRevenue = (
   page: number = 1
-): UseQueryResult<RevenueOverviewResponse, Error> => {
+): QueryObserverResult<RevenueOverviewResponse, Error> => {
   return useQuery({
     queryKey: ["revenue", page],
     queryFn: () => fetchRevenueOverview(page),
-    keepPreviousData: true,
-    staleTime: 1000 * 60 * 5, // 5 minutes
+    staleTime: 1000 * 60 * 5, // 5 minutes cache
   });
 };
 
